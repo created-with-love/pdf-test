@@ -1,0 +1,24 @@
+import { Button } from '@headlessui/react';
+import { Fragment } from 'react';
+import clsx from "clsx";
+
+export const SubmitButton = () => {
+    return (
+        <div className="w-full max-w-md px-4 pb-4">
+            <Button as={Fragment} type="submit">
+                {({ hover, active }) => (
+                    <button
+                        className={clsx(
+                            'rounded py-2 px-4 text-sm text-white',
+                            !hover && !active && 'bg-sky-600',
+                            hover && !active && 'bg-sky-500',
+                            active && 'bg-sky-700'
+                        )}
+                    >
+                        Конвертувати в PDF
+                    </button>
+                )}
+            </Button>
+        </div>
+    )
+}
