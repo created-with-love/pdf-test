@@ -1,8 +1,9 @@
 import { Button } from '@headlessui/react';
-import { Fragment } from 'react';
-import clsx from "clsx";
+import { Fragment, FC } from 'react';
+import {clsx} from "clsx";
 
-export const SubmitButton = () => {
+
+export const SubmitButton: FC = () => {
     return (
         <div className="w-full max-w-md px-4 pb-4">
             <Button as={Fragment} type="submit">

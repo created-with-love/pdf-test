@@ -1,7 +1,7 @@
 import {RESULTS} from "../constants/results";
 
-export function saveResultToLocalstorage(text, url) {
-    const currentResults = localStorage.getItem(RESULTS);
+export function saveResultToLocalstorage(text: string, url: string): void {
+    const currentResults: string | null = localStorage.getItem(RESULTS);
 
     if (currentResults) {
         const results = JSON.parse(currentResults);

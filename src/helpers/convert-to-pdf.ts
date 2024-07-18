@@ -1,9 +1,9 @@
-export async function convertToPdf(text) {
-    const apiKey = process.env.REACT_APP_API_KEY || '';
-    const apiUrl = `http://95.217.134.12:4010/create-pdf?apiKey=${apiKey}`;
+export async function convertToPdf(text: string): Promise<string | undefined> {
+    const apiKey: string = process.env.REACT_APP_API_KEY || '';
+    const apiUrl: string = `http://95.217.134.12:4010/create-pdf?apiKey=${apiKey}`;
 
     try {
-        const response = await fetch(apiUrl, {
+        const response: Response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ export async function convertToPdf(text) {
         });
 
         if (response.ok) {
-            const blob = await response.blob();
+            const blob: Blob = await response.blob();
 
             return URL.createObjectURL(blob);
         } else {

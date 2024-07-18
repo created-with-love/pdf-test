@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState, JSX} from "react";
 import {
     TextAreaControl,
     SubmitButton,
@@ -6,9 +6,10 @@ import {
     FormProvider,
     PDFViewer
 } from "./components";
+import {UseStateResult} from "./types/use-state-return-type";
 
-function App() {
-    const [currentPDFUrl, setCurrentPDFUrl] = useState('');
+function App(): JSX.Element {
+    const [currentPDFUrl, setCurrentPDFUrl]: UseStateResult<string> = useState('');
 
   return (
     <div className="App">

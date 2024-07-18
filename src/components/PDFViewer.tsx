@@ -1,15 +1,20 @@
-import React from "react";
+import {FC} from "react";
+
 import {ProgressBar, Viewer, Worker} from "@react-pdf-viewer/core";
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout/lib';
+import {DefaultLayoutPlugin, defaultLayoutPlugin} from '@react-pdf-viewer/default-layout/lib';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
+// @ts-ignore
 import packageJson from '../../package.json';
 
-const pdfjsVersion = packageJson.dependencies['pdfjs-dist'];
+const pdfjsVersion: string = packageJson.dependencies['pdfjs-dist'];
 
-export const PDFViewer = ({currentPDFUrl}) => {
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+interface PDFViewerProps {
+    currentPDFUrl: string;
+}
+export const PDFViewer: FC<PDFViewerProps> = ({currentPDFUrl}: PDFViewerProps) => {
+    const defaultLayoutPluginInstance:  DefaultLayoutPlugin = defaultLayoutPlugin();
 
     return (
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`}>

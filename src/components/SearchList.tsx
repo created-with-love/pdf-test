@@ -1,20 +1,29 @@
-import {useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {Button} from "@headlessui/react";
 import {convertToPdf} from "../helpers/convert-to-pdf";
 import {saveResultToLocalstorage} from "../helpers/save-result-to-localstorage";
 import {RESULTS} from "../constants/results";
+import {UseStateResult} from "../types/use-state-return-type";
 
-export const SearchList = ({setURL}) => {
-    const [searchList, setSearchList] = useState([]);
+interface SearchListItem {
+    text: string;
+    url: string;
+}
 
-    function removeOldUrlFromLocalStorage(url) {
-        const results = localStorage.getItem(RESULTS);
-        const data = JSON.parse(results).filter(result =>  result.url !== url);
+interface SearchListProps {
+    setURL: (value: string) => void;
+}
+export const SearchList: FC<SearchListProps> = ({setURL}: SearchListProps) => {
+    const [searchList, setSearchList]: UseStateResult<SearchListItem[]> = useState<SearchListItem[]>([]);
+
+    function removeOldUrlFromLocalStorage(url: string): void {
+        const results: string | null = localStorage.getItem(RESULTS);
+        const data = results ? JSON.parse(results).filter((result: SearchListItem) =>  result.url !== url) : [];
         localStorage.setItem(RESULTS, JSON.stringify(data));
     }
 
-    function handleCurrentResult(text, url) {
-        convertToPdf(text).then(result => {
+    function handleCurrentResult(text: string, url: string): void {
+        convertToPdf(text).then((result: string | undefined) => {
             if (result) {
                 setURL(result);
                 removeOldUrlFromLocalStorage(url);
@@ -25,7 +34,7 @@ export const SearchList = ({setURL}) => {
     }
 
     useEffect(() => {
-        const localStorageResults = localStorage.getItem(RESULTS);
+        const localStorageResults: string | null = localStorage.getItem(RESULTS);
 
         if (localStorageResults) {
             setSearchList(JSON.parse(localStorageResults));

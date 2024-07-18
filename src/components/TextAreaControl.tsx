@@ -1,7 +1,8 @@
 import {Description, Field, Label, Textarea} from '@headlessui/react'
-import clsx from "clsx";
+import {clsx} from "clsx";
+import {FC} from "react";
 
-export const TextAreaControl = () => {
+export const TextAreaControl: FC = () => {
     return (
         <div className="w-full max-w-xxl px-4 py-4 mt-5">
             <Field>
