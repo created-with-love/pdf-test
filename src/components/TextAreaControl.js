@@ -13,6 +13,7 @@ export const TextAreaControl = () => {
                         'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                     )}
                     rows={8}
+                    name="pdfText"
                 />
             </Field>
         </div>

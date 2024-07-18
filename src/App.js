@@ -3,9 +3,9 @@ import {
     TextAreaControl,
     SubmitButton,
     SearchList,
-    FormProvider
+    FormProvider,
+    PDFViewer
 } from "./components";
-import PDFViewer from 'pdf-viewer-reactjs'
 
 function App() {
     const [currentPDFUrl, setCurrentPDFUrl] = useState('');
@@ -17,13 +17,7 @@ function App() {
             <SubmitButton />
         </FormProvider>
 
-        {currentPDFUrl && (
-            <PDFViewer
-                document={{
-                    url: currentPDFUrl,
-                }}
-            />
-        )}
+        <PDFViewer currentPDFUrl={currentPDFUrl} />
         <SearchList setURL={setCurrentPDFUrl} />
     </div>
   );
